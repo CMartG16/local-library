@@ -9,16 +9,17 @@ function findAccountById(accounts, id) {
  }
  
  function getTotalNumberOfBorrows(account, books) {
-   let borrowed = 0;
-   for(let i=0; i<books.length; i++){
-     for(let j=0; j<books[i].borrows.length; j++){
-       if(account.id === books[i].borrows[j].id){
-         borrowed++
-       }
-     }
-   }
-   return borrowed
- }
+      const { id: accId } = account;
+    
+      return books.reduce((accumulator, book) => {
+        return (
+          accumulator +
+          book.borrows
+            .filter(borrow => borrow.id === accId)
+            .reduce((accumulatorBorrows, borrow) => accumulatorBorrows + 1, 0)
+        );
+      }, 0);
+    }
  
  function getBooksPossessedByAccount(account, books, authors) {
    let checkedOut = [];
