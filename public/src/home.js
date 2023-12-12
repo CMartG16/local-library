@@ -21,14 +21,14 @@ function getMostCommonGenres(books) {
     count
    };
   })
-  .sort((a, b) => b.count - a.count)
+  .sort((bookA, bookB) => bookB.count - bookA.count)
   .slice(0, 5);
 }
 
 function getMostPopularBooks(books) {
  return books.map((book) => {
    return { name: book.title, count: book.borrows.length };
-  }).sort((a, b) => a.count < b.count ? 1 : -1).slice(0, 5)
+  }).sort((bookA, bookB) => bookA.count < bookB.count ? 1 : -1).slice(0, 5)
 }
 
 function getMostPopularAuthors(books, authors) {
@@ -45,7 +45,7 @@ function getMostPopularAuthors(books, authors) {
   });
   result.push(theAuthor);
  });
- return result.sort((a, b) => b.count - a.count).slice(0, 5);
+ return result.sort((bookA, bookB) => bookB.count - bookA.count).slice(0, 5);
 }
 
 
