@@ -1,11 +1,9 @@
 function findAuthorById(authors, id) {
-  const matchingAuthor = authors.find(author => author.id === id)
-  return matchingAuthor
+return findCertainElement(authors, id);
   }
 
 function findBookById(books, id) {
-  const matchingBook = books.find(book => book.id === id)
-  return matchingBook;
+ return findCertainElement(books, id);
 }
 
 function partitionBooksByBorrowedStatus(books) {
@@ -24,6 +22,12 @@ function getBorrowersForBook(book, accounts) {
     let account = accounts.find(account => account.id === borrow.id)
   return {...borrow, ...account}}).slice(0, 10);
 }
+
+//helper Function
+function findCertainElement(elements, id) {
+  return elements.find((element) => element.id === id);
+};
+
 module.exports = {
   findAuthorById,
   findBookById,
